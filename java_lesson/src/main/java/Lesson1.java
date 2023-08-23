@@ -6,8 +6,9 @@ public class Lesson1 {
     public static void main(String[] args) {
 //        greatestNumber();
 // compaereNumbers();
-//          calculateFactorial();
-        calculateAverage();
+         //calculateFactorial();
+        //calculateAverage();
+        averageCalculate();
     }
 
     public static void greatestNumber() {
