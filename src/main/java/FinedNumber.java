@@ -12,17 +12,19 @@ public class FinedNumber {
         Scanner scanner = new Scanner(System.in);
 
         Random random = new Random();
+        int startValue = scanner.nextInt();
+        int endValue = scanner.nextInt();
 
-        int rand = random.nextInt(0, 10);
+        int rand = random.nextInt(startValue, endValue);
 
+        int count = 1;
         while (true) {
             System.out.println("Guess the number");
-            int i = 1;
             int num = scanner.nextInt();
 
             if (num == rand) {
                 System.out.println("Congratulations");
-                System.out.println("vazgen " + i);
+                System.out.println("The correct number is " + num + " you tried " + count + " times");
                 break;
 
             } else if (num > rand) {
@@ -30,7 +32,7 @@ public class FinedNumber {
             } else {
                 System.out.println("The chosen number is lower, Try again");
             }
-
+            count++;
 
         }
 
