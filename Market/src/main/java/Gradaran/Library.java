@@ -1,32 +1,16 @@
 package Gradaran;
 
 
-import Gayanei_Tnain.Employee;
-import org.jetbrains.annotations.NotNull;
-
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class Library {
     private Scanner scanner = new Scanner(System.in);
     private boolean isGradaranOpen = true;
 
-    private final int rentPricePerSecond = 10;
-
-    private long income;
 
     private ArrayList<Books1> bookList = new ArrayList<>();
 
-    public long getIncome() {
-        return income;
-    }
-
-    public void setIncome(int income) {
-        this.income = income;
-    }
 
     public boolean isBookExist(String bookName, String bookAutor) {
         for (Books1 book : bookList) {
@@ -69,18 +53,40 @@ public class Library {
             System.out.println("We don't have book with this name " + bName + " and this autor name" + bAutor);
     }
 
+//    public void returnBookToLibrary(String bName, String bAutor) {
+//        if (!isBookExist(bName, bAutor)) {
+//            Books1 book = getBookInfo(bName, bAutor);
+//            if (!book.isArka()) {
+//                System.out.println("The book " + bName + " arden veradardzvats e  ");
+//            } else {
+//                book.changStatus();
+//                book.addRentDuration();
+//                book.calculateIncome();
+//                System.out.println(bName + " book successfully returned ");
+//            }
+//        } else
+//            System.out.println("We don't have book with this name " + bName + " and this autor name" + bAutor);
+//    }
+
     public void returnBookToLibrary(String bName, String bAutor) {
-        if (!isBookExist(bName, bAutor)) {
-            Books1 book = getBookInfo(bName, bAutor);
-            if (!book.isArka()) {
-                System.out.println("The book " + bName + " arden veradardzvats e  ");
-            } else {
+        boolean bookExists = false;
+        for (Books1 book : bookList) {
+            if (bName.equals(book.getBookName()) && bAutor.equals(book.getBookAutor())) {
+                bookExists = true;
+                if (!book.isArka()) {
+                    System.out.println("The book " + bName + " has already been returned.");
+                    return;
+                }
                 book.changStatus();
                 book.addRentDuration();
+                book.calculateIncome();
                 System.out.println(bName + " book successfully returned ");
+                break;
             }
-        } else
-            System.out.println("We don't have book with this name " + bName + " and this autor name" + bAutor);
+        }
+        if (!bookExists) {
+            System.out.println("We don't have a book with this name " + bName + " and this author name " + bAutor);
+        }
     }
 
 
